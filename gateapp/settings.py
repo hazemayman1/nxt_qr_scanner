@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7!zg8h0u%jsp%4*i8c11q@v8ooqkui9uw@%px^ynf$2ld^*a5=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nxt-qr-scanner.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
