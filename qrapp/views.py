@@ -66,3 +66,8 @@ class HandleSubmitView(APIView):
                 return JsonResponse({"message": f"{user.name}'s coffee claimed succesfully", "success": True})
 
         return JsonResponse({"message": f"Unknown request"})
+
+class HandleResetView(APIView):
+    def get(self,request, *args, **kwargs ):
+        Attendee.objects.all().update(has_entered = False, got_coffee = False)
+        return JsonResponse({"message": f"Success"})

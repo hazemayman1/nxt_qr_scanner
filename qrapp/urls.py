@@ -8,6 +8,7 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('scan/<int:user_id>/', views.HandleScanView.as_view(), name='scan_handler'),
     path('submit/', views.HandleSubmitView.as_view(), name='submit_handler'),
+    path('reset/', views.HandleResetView.as_view(), name='reset'),
         # Endpoint to get the JWT token
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     
