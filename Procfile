@@ -1,1 +1,1 @@
-web: gunicorn qr_app.wsgi
+web: gunicorn gateapp.wsgi
