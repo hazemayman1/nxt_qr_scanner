@@ -2,10 +2,13 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from qrapp.models import Attendee
-from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from django.http import HttpResponse
+import pandas as pd
+
 import json
 
 
@@ -71,3 +74,23 @@ class HandleResetView(APIView):
     def get(self,request, *args, **kwargs ):
         Attendee.objects.all().update(has_entered = False, got_coffee = False)
         return JsonResponse({"message": f"Success"})
+    
+
+class HandleExportView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Get all attendees
+        attendees = Attendee.objects.all().exclude(ptr_id__in = [1001, 987,654]).values('id', 'name', 'email', 'has_entered', 'got_coffee', 'is_vip')
+
+        # Create DataFrame
+        df = pd.DataFrame(attendees)
+
+        # Create HTTP response
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        filename = f"attendees_data.xlsx"
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+
+        # Write Excel to response
+        with pd.ExcelWriter(response, engine='openpyxl') as writer:
+            df.to_excel(writer, sheet_name='Attendees', index=False)
+
+        return response
