@@ -80,7 +80,7 @@ class HandleResetView(APIView):
 class HandleExportView(APIView):
     def get(self, request, *args, **kwargs):
         # Get all attendees
-        attendees = Attendee.objects.all().exclude(ptr_id__in = [1001, 987,654]).values('id', 'name', 'email', 'has_entered', 'got_coffee', 'is_vip')
+        attendees = Attendee.objects.all().exclude(ptr_id__in = [1001, 987,654]).values('id', 'name', 'email', 'has_entered', 'got_coffee', 'is_vip', 'company')
 
         # Create DataFrame
         df = pd.DataFrame(attendees)
