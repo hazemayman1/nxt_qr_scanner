@@ -23,7 +23,7 @@ class HandleScanView(APIView):
                 "msg" : "QRCode for this user doesn't exist",
                 "name" : None,
                 "entrance" : False,
-                "coffee" : False
+                "coffee" : False,
             }
         else:
             user = user.last()
@@ -33,7 +33,8 @@ class HandleScanView(APIView):
                     "name" : user.name,
                     "entrance" : user.has_entered,
                     "coffee" : user.got_coffee,
-                    "vip" : user.is_vip
+                    "vip" : user.is_vip,
+                    "company": user.company
             }
         print(payload)
         return JsonResponse(payload, status = 200)

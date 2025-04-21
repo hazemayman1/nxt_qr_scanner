@@ -10,5 +10,6 @@ class Attendee(models.Model):
     got_coffee = models.BooleanField(default=False)
     email = models.CharField(max_length=100, null = True)
     is_vip = models.BooleanField(default=False)
+    company = models.CharField(max_length=100, null = True)
     def __str__(self):
         return self.name

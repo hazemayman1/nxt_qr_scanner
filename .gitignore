@@ -43,3 +43,4 @@ media/
 # .env file to keep environment variables secure
 .env
 EmployeesEmails.xlsx
+Vips.xlsx
