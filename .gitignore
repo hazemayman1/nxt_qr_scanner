@@ -44,3 +44,7 @@ media/
 .env
 EmployeesEmails.xlsx
 Vips.xlsx
+qrcodes/
+qrcodes_vip/
+
+*.sqlite3
